@@ -46,10 +46,11 @@ export default function TextForm(props) {
   };
 
   const wordCounter = () => {
-    let newText = text.split(/[ ]+/).join(" ");
-    let newText2 = newText.split(" ").length;
+    let newText = text.split(" ").filter((element) => {
+      return element.length !== 0;
+    }).length;
 
-    return newText2;
+    return newText;
   };
 
   const [text, setText] = useState("");
@@ -65,34 +66,34 @@ export default function TextForm(props) {
         </div>
 
         {/* uppercase button */}
-        <button className="btn btn-primary mx-1" onClick={handleUpCase}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleUpCase}>
           Convert to UpperCase
         </button>
 
         {/* lower case button */}
-        <button className="btn btn-primary mx-1" onClick={handleLowCase}>
+        <button className="btn btn-primary mx-1 my-1 " onClick={handleLowCase}>
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleClear}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleClear}>
           Clear Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleSenUpCase}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleSenUpCase}>
           Setence Uppercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={speak}>
+        <button className="btn btn-primary mx-1 my-1" onClick={speak}>
           Read text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handlerev}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handlerev}>
           Reverse text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleExtraSpace}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleExtraSpace}>
           Clear Extra Space
         </button>
       </div>
       <div className="container my-3" style={{ color: props.mode === "light" ? "black" : "white" }}>
         <h2>Your text Summary</h2>
         <p>
-          {text.length > 0 ? wordCounter() : "0"} words, {text.length} characters
+          {wordCounter()} words, {text.length} characters
         </p>
         <p>{text.split(" ").length * 0.008} minutes to read this</p>
 
